@@ -20,7 +20,7 @@ koalaRouter.get('/', (req, res) => {
 koalaRouter.post('/', (req, res) => {
     const sqlQuery = `
         INSERT INTO "koalas" 
-            ("name", "age", "color", "readyToTransfer", "notes") 
+            ("name", "age", "favorite_color", "ready_to_transfer", "notes") 
         VALUES 
             ($1, $2, $3, $4, $5)
     `;
@@ -46,15 +46,16 @@ koalaRouter.post('/', (req, res) => {
 koalaRouter.put('/:id', (req, res) => {
     const koalaId = req.params.id;
     console.log(`PUT /${koalaId}`, req.body);
-
+   
     const sqlQuery = `
         UPDATE "koalas" 
-        SET "readyToTransfer"=$2 
+        SET "ready_to_transfer"= NOT "ready_to_transfer"
         WHERE id=$1;
     `;
+  
     const sqlParams = [koalaId, req.body.readyToTransfer];
 
-    pool.query(sqlQuery, sqlParams)
+    pool.query(sqlQuery, [koalaId])
         .then(response => {
             console.log(`PUT /koalas/${koalaId} succeeded!`);
         })

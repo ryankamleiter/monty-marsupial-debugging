@@ -1,7 +1,7 @@
 const pg = require('pg');
 
 const pool = new pg.Pool({
-    database: 'koala_holla',
+    database: 'koalas', 
     host: 'localhost',
     port: 5432,
 });

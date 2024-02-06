@@ -1,16 +1,16 @@
 -- do these datatypes make sense?
 CREATE TABLE "koalas" (
 	"id" SERIAL PRIMARY KEY,
-	"name" INT NOT NULL,
-	"color" VARCHAR(20) NOT NULL,
-	"age" INT,
-	"readyToTransfer" BOOLEAN,
+	"name" VARCHAR(20) NOT NULL,
+	"favorite_color" VARCHAR(20) NOT NULL,
+	"age" INTEGER NOT NULL,
+	"ready_to_transfer" BOOLEAN DEFAULT FALSE,
 	"notes" VARCHAR(250)
 );
 
 -- look closely at the order of things!
 INSERT INTO "koalas" 
-	("color", "name", "age", "readyToTransfer", "notes") 
+	("name", "favorite_color", "age", "ready_to_transfer", "notes") 
 VALUES 
 	('Scotty', 'Red', 4, TRUE, 'Born in Guatemala'), 
 	('Jean', 'Green', 5, TRUE, 'Allergic to lots of lava'), 

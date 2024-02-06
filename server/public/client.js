@@ -68,7 +68,10 @@ function createKoala(event) {
     notesIn.value = ''
 
     getKoalas();
-  });
+  }) 
+  .catch ((err) => {
+    console.log('error in POST /koalas.', err);
+  })
 }
 
 function deleteKoala(event) {
@@ -109,17 +112,17 @@ function renderKoalas(koalas) {
   for (let koala of koalas) {
     console.log('in render koalas', koala);
     
-    koalaList.innerHTML += (`
+    koalaList.innerHTML += `
       <tr data-id=${koala.id}>
         <td>${koala.name}</td>
         <td>${koala.age}</td>
-        <td>${koala.color}</td>
+        <td>${koala.favorite_color}</td>
         <td>
           <div class="form-check form-switch">
             <input 
             class="form-check-input ready-to-transfer-toggle" 
             type="checkbox"
-            ${koala.readyToTransfer ? 'checked' : ''}
+            ${koala.ready_to_transfer ? 'checked' : ''}
             onclick="toggleReadyToTransfer(event)"
             />
           </div>
@@ -131,6 +134,6 @@ function renderKoalas(koalas) {
           </button>
         </td>
       </tr>
-    `);
+    `;
   }
 }
